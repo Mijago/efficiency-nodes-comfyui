@@ -4,8 +4,8 @@ import torch
 from typing import List
 import comfy.sample
 from comfy import model_base, model_management
-from comfy.samplers import KSampler, CompVisVDenoiser, KSamplerX0Inpaint
-from comfy.k_diffusion.external import CompVisDenoiser
+from comfy.samplers import KSampler, KSamplerX0Inpaint
+from k_diffusion.external import DiscreteVDDPMDenoiser, CompVisDenoiser
 import nodes
 import inspect
 import functools
@@ -16,6 +16,15 @@ import itertools
 
 import torch
 from comfy import model_management
+
+
+class CompVisVDenoiser(DiscreteVDDPMDenoiser):
+    def __init__(self, model, quantize=False, device='cpu'):
+        super().__init__(model, model.alphas_cumprod, quantize=quantize)
+
+    def get_v(self, x, t, cond, **kwargs):
+        return self.inner_model.apply_model(x, t, cond, **kwargs)
+
 
 def catenate_conds(conds):
     if not isinstance(conds[0], dict):
