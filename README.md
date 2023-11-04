@@ -1,4 +1,6 @@
-⚠️ **IMPORTANT:** Due to shifts in priorities and a decreased interest in this project from my end, this repository will no longer receive updates or maintenance. Use at your own risk...
+As the original repository has been abandoned, I have decided to continue the development of this project.
+I will be adding new features and fixing bugs as I find them. I will also be adding new nodes as I see fit. I will be keeping the original README.md below for reference.
+Note that this is not a primary project of mine, but as I use these nodes almost always, I'll fix bugs when I find them.
 
 Efficiency Nodes for ComfyUI
 =======
